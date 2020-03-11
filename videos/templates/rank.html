@@ -23,6 +23,7 @@
   <div class="container">
     <table>
         <thead>
+            <th>Rank</th>
             <th>Theme</th>
             <th>Likes</th>
             <th>Dislikes</th>
@@ -32,6 +33,7 @@
         <tbody>
            {% for theme in themes %}
                 <tr>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ theme.0 }}</td>
                     <td>{{ theme.1 }}</td>
                     <td>{{ theme.2 }}</td>

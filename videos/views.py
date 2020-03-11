@@ -42,8 +42,6 @@ def rank_themes(request):
             thumbs_up += video.thumbs_up
             thumbs_down += video.thumbs_down
             score += (video.thumbs_up - (video.thumbs_down/2)) 
-            print(thumbs_up - (thumbs_down/2), video.title)
-            print(score)
         themes_objects.update({'theme': {'name': theme[1], 'thumbs_up': thumbs_up, 'thumbs_down': thumbs_down, 'score': score}})
         themes_dict.append(themes_objects)
     
