@@ -1,0 +1,24 @@
+a.brand-logo, nav ul a {
+    color: #021030;
+}
+
+button#submit, #id_title:focus + label, #id_description:focus + label {
+    color: #000000;
+}
+
+.material-icons{
+    display: inline-flex;
+    vertical-align: top;
+}
+
+#id_title:focus, #id_description:focus {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+#id_theme:focus {
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+}

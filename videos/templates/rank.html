@@ -1,0 +1,45 @@
+{% load static %}
+
+<head>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>DeeperVideos - Themes</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    
+  <nav>
+    <div class="nav-wrapper yellow accent-1">
+      <a href="/" class="brand-logo">DeeperVideos</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/rank">Themes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <table>
+        <thead>
+            <th>Theme</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+            <th>Score</th>
+        </thead>
+
+        <tbody>
+           {% for theme in themes %}
+                <tr>
+                    <td>{{ theme.0 }}</td>
+                    <td>{{ theme.1 }}</td>
+                    <td>{{ theme.2 }}</td>
+                    <td>{{ theme.3 }}</td>
+                </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+  </div>
+
+  </body>

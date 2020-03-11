@@ -1,0 +1,93 @@
+{% load static %}
+
+<head>
+  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>DeeperVideos - Home</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    
+  <nav>
+    <div class="nav-wrapper yellow accent-1">
+      <a href="/" class="brand-logo">DeeperVideos</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/rank">Themes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h4>All videos</h4>
+    {% for video in all_videos %}
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card inline yellow accent-1" id="card">
+          <div class="card-content black-text">
+            <span class="card-title">{{ video.title }}</span>
+            <p><strong>Description:</strong> {{ video.description }}</p>
+            <p><strong>Published at:</strong> {{ video.publish_date }}</p>
+            <p><strong>Theme:</strong> {{ video.theme }}</p>
+          </div>
+          <div class="card-action">
+            <a href="{% url 'thumbs_video' video.id 1 %}"><i class="material-icons">thumb_up</i> {{ video.thumbs_up }}</a>
+            <a href="{% url 'thumbs_video' video.id 0 %}"><i class="material-icons">thumb_down</i> {{ video.thumbs_down }}</a>
+            <a href="{% url 'delete_video' video.id %}"><i class="material-icons">delete</i> Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>    
+    
+    {% endfor %}
+
+  <h4>Add a new video</h4> 
+  <div class="row">
+    <form class="col s12" method="POST">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ field.name }} - {{ error }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+      <div class="row">
+        <div class="input-field col s12">
+          {{ form.title }}
+          <label>Title</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          {{ form.description }}
+          <label>Description</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <label>Theme</label>
+          <br><br>
+          {{ form.theme }}
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <button type="submit" class="waves-effect waves-light btn yellow accent-1" id="submit">submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+
